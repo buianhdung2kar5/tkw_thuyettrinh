@@ -48,4 +48,5 @@ def get_data_json(filename):
 def blog_name(filename):
     return render_template(f"blog-infor.html", filename=filename)
 if __name__ == "__main__":
-    app.run(debug=True, port=5001)
+    port = int(os.environ.get("PORT", 5000))  # Lấy cổng do Railway cấp
+    app.run(host="0.0.0.0", port=port)
