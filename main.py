@@ -35,18 +35,33 @@ def get_data_json(filename):
         return jsonify({"error": "File này không được truy cập!"}), 403
 
     try:
-        filepath = f"./static/data/{filename}.json"
+        filepath = f"/static/assets/data/{filename}.json"
         with open(filepath, "r", encoding="utf-8") as file:
             data = json.load(file)
             return jsonify(data)
     except FileNotFoundError:
         return jsonify({"error": "File này không tồn tại!"}), 404
 
+# Các route html
+@app.route('/banhang')
+def banhang():
+    return render_template("banhang.html")
 
+@app.route('/khogiaodien')
+def giaodien():
+    return render_template("khogiaodien.html")
+
+@app.route('/thietkelogo')
+def logo():
+    return render_template("thietkelogo.html")
+@app.route('/xaydungweb')
+def xaydungweb():
+    return render_template("xaydungweb.html")
 # Truyền vào từng link tìm kiếm
 @app.route("/blog/<filename>")
 def blog_name(filename):
     return render_template(f"blog-infor.html", filename=filename)
+
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))  # Lấy cổng do Railway cấp
     app.run(debug=False, host="0.0.0.0", port=port)
