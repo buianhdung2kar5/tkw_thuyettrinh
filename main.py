@@ -16,7 +16,7 @@ app.secret_key = os.getenv("SECRET_KEY")
 # Route chính: render template index.html
 @app.route("/")
 def index():
-    return render_template("blog.html")
+    return render_template("index.html")
 
 
 @app.route("/blog")
