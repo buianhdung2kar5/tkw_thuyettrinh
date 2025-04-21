@@ -35,7 +35,7 @@ def get_data_json(filename):
         return jsonify({"error": "File này không được truy cập!"}), 403
 
     try:
-        filepath = f"/static/assets/data/{filename}.json"
+        filepath = os.path.join("static", "assets", "data", f"{filename}.json")
         with open(filepath, "r", encoding="utf-8") as file:
             data = json.load(file)
             return jsonify(data)
